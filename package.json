@@ -40,5 +40,9 @@
 		"eslint-plugin-node": "^9.1.0",
 		"eslint-plugin-promise": "^4.2.1",
 		"vscode": "^1.1.35"
+	},
+	"repository": {
+		"type": "git",
+		"url": "https://github.com/jsdelivr/plugin-vs-code.git"
 	}
 }
