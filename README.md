@@ -1,4 +1,4 @@
-# plugin-visual-studio-code
+# plugin-vs-code
 
 Quickly insert any npm package from [jsDelivr CDN](https://www.jsdelivr.com).
 
