@@ -1,0 +1,44 @@
+{
+	"name": "jsdelivr",
+	"displayName": "jsDelivr",
+	"description": "Quickly insert any npm package from jsDelivr CDN.",
+	"version": "1.0.0",
+	"publisher": "jsDelivr",
+	"engines": {
+		"vscode": "^1.33.0"
+	},
+	"categories": [
+		"Other"
+	],
+	"activationEvents": [
+		"onCommand:jsDelivr.addPkg"
+	],
+	"main": "./src/extension.js",
+	"contributes": {
+		"commands": [
+			{
+				"command": "jsDelivr.addPkg",
+				"title": "jsDelivr: Add jsDelivr package"
+			}
+		]
+	},
+	"scripts": {
+		"lint": "eslint src",
+		"postinstall": "node ./node_modules/vscode/bin/install",
+		"test": "npm run lint"
+	},
+	"dependencies": {
+		"algoliasearch": "^3.32.0",
+		"got": "^9.6.0",
+		"semver": "^6.2.0"
+	},
+	"devDependencies": {
+		"@martin-kolarik/eslint-config": "^2.0.0",
+		"eslint": "^6.0.1",
+		"eslint-plugin-chai-expect": "^2.0.1",
+		"eslint-plugin-html": "^6.0.0",
+		"eslint-plugin-node": "^9.1.0",
+		"eslint-plugin-promise": "^4.2.1",
+		"vscode": "^1.1.35"
+	}
+}

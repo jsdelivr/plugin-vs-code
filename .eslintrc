@@ -1,0 +1,19 @@
+{
+	"extends": "@martin-kolarik/eslint-config",
+	"globals": {
+		"atom": true
+	},
+	"rules": {
+		"node/no-missing-require": [
+			"error",
+			{
+				"allowModules": [
+					"vscode"
+				]
+			}
+		]
+	},
+	"plugins": [
+		"html"
+	]
+}
