@@ -15,33 +15,50 @@ async function pickFile (input, state) {
 	let hashes = new Map();
 
 	try {
-		response = await got(`${state.pkg.name}@${state.version}/flat`, { baseUrl: jsDelivrEndpoint, headers: { 'user-agent': userAgent } });
+		response = await got(`${state.pkg.name}@${state.version}/flat`, {
+			baseUrl: jsDelivrEndpoint,
+			headers: {
+				'user-agent': userAgent,
+			},
+		});
 	} catch (e) {
 		vscode.window.showErrorMessage('Unexpected error occurred');
 		return InputFlowAction.cancel;
 	}
 
-	JSON.parse(response.body).files.forEach((file) => {
+	const body = JSON.parse(response.body);
+	const defaultFile = body.default.substr(1); // remove leading `/`
+
+	body.files.forEach((file) => {
 		hashes.set(file.name.substr(1), file.hash);
 	});
 
-	let files = JSON.parse(response.body).files.filter((file) => {
+	let files = body.files.filter((file) => {
+		// we only want .js and .css files
 		return file.name.toLowerCase().endsWith('.js') || file.name.toLowerCase().endsWith('.css');
 	}).map((file) => {
-		return file.name.substr(1);
+		return file.name.substr(1); // remove leading `/`
 	});
 
+	// deleting the default file in array
+	// we'll sort the array later then add it back to index 0
+	files.splice(files.indexOf(defaultFile), 1);
+
 	files.forEach((file) => {
+		// not ending with neither `.min.js` or `.min.css`
 		if (!file.toLowerCase().endsWith('.min.js') && !file.toLowerCase().endsWith('.min.css')) {
+			// rename to `.min.js` or `.min.css`
 			minFiles.push(file.toLowerCase().endsWith('.js') ? file.replace(/\.js$/i, '.min.js') : file.replace(/\.css$/i, '.min.css'));
 		}
 	});
 
 	let completeFileList = files.concat(minFiles)
-		.filter((v, i, a) => a.indexOf(v) === i)
+		.filter((v, i, a) => a.indexOf(v) === i) // no duplicates!
 		.sort((file1, file2) => {
-			return file1 > file2 ? 1 : -1;
+			return file1 > file2 ? 1 : -1; // sort alphabetically (https://stackoverflow.com/a/7087833/2465955)
 		});
+
+	completeFileList.unshift(defaultFile); // we insert default file to first of file list
 
 	const pick = await input.showQuickPick({
 		title: 'Pick file',
