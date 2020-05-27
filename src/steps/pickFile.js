@@ -40,10 +40,6 @@ async function pickFile (input, state) {
 		return file.name.substr(1); // remove leading `/`
 	});
 
-	// deleting the default file in array
-	// we'll sort the array later then add it back to index 0
-	files.splice(files.indexOf(defaultFile), 1);
-
 	files.forEach((file) => {
 		// not ending with neither `.min.js` or `.min.css`
 		if (!file.toLowerCase().endsWith('.min.js') && !file.toLowerCase().endsWith('.min.css')) {
@@ -58,7 +54,9 @@ async function pickFile (input, state) {
 			return file1 > file2 ? 1 : -1; // sort alphabetically (https://stackoverflow.com/a/7087833/2465955)
 		});
 
-	completeFileList.unshift(defaultFile); // we insert default file to first of file list
+	// delete the default file, then add it back to index 0
+	completeFileList.splice(completeFileList.indexOf(defaultFile), 1);
+	completeFileList.unshift(defaultFile);
 
 	const pick = await input.showQuickPick({
 		title: 'Pick file',
