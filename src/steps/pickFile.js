@@ -55,7 +55,7 @@ async function pickFile (input, state) {
 	let completeFileList = files.concat(minFiles)
 		.filter((v, i, a) => a.indexOf(v) === i) // no duplicates!
 		.sort((file1, file2) => {
-			return file1 > file2 ? 1 : -1; // sort by length
+			return file1 > file2 ? 1 : -1; // sort alphabetically (https://stackoverflow.com/a/7087833/2465955)
 		});
 
 	completeFileList.unshift(defaultFile); // we insert default file to first of file list
