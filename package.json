@@ -3,6 +3,7 @@
 	"displayName": "jsDelivr",
 	"description": "Quickly insert any npm package from jsDelivr CDN.",
 	"version": "1.0.0",
+	"license": "OSL-3.0",
 	"publisher": "jsDelivr",
 	"engines": {
 		"vscode": "^1.33.0"
