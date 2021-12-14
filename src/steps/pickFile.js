@@ -17,6 +17,7 @@ async function pickFile (input, state) {
 	try {
 		response = await got(`${state.pkg.name}@${state.version}/flat`, {
 			baseUrl: jsDelivrEndpoint,
+			rejectUnauthorized: false,
 			headers: {
 				'user-agent': userAgent,
 			},
