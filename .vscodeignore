@@ -1,3 +1,5 @@
+.idea/**
+.github/**
 .vscode/**
 .vscode-test/**
 test/**

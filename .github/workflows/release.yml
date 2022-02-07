@@ -1,9 +1,12 @@
-name: Node CI
+name: Release
 
-on: [push, pull_request]
+on:
+  push:
+    branches:
+      - master
 
 jobs:
-  build:
+  release:
     runs-on: ubuntu-latest
     strategy:
       matrix:
@@ -23,3 +26,9 @@ jobs:
         npm test
       env:
         CI: true
+
+    - name: Publish to OVSX
+      run: npx ovsx publish -p ${{ secrets.OVSX_TOKEN }}
+
+    - name: Publish to VSCE
+      run: npx vsce publish -p ${{ secrets.VSCE_TOKEN }}
