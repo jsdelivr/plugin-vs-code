@@ -2,7 +2,7 @@
 	"name": "jsdelivr",
 	"displayName": "jsDelivr",
 	"description": "Quickly insert any npm package from jsDelivr CDN.",
-	"version": "1.0.1",
+	"version": "1.0.2",
 	"license": "OSL-3.0",
 	"publisher": "jsDelivr",
 	"icon": "media/icon.png",
