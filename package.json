@@ -5,6 +5,7 @@
 	"version": "1.0.0",
 	"license": "OSL-3.0",
 	"publisher": "jsDelivr",
+    "icon": "media/icon.png",
 	"engines": {
 		"vscode": "^1.33.0"
 	},

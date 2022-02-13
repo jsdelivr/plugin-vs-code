@@ -4,7 +4,7 @@ Quickly insert any npm package from [jsDelivr CDN](https://www.jsdelivr.com).
 
 Launch command "Add jsDelivr package" from command palette.
 
-![Screenshot 1](screenshots/preview.gif)
+![Screenshot 1](media/preview.gif)
 
 ## Installation
 
