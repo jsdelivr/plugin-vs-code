@@ -1,4 +1,4 @@
-name: Release
+name: Release / VSCE
 
 on:
   push:
@@ -26,9 +26,6 @@ jobs:
         npm test
       env:
         CI: true
-
-    - name: Publish to OVSX
-      run: npx ovsx publish -p ${{ secrets.OVSX_TOKEN }}
 
     - name: Publish to VSCE
       run: npx vsce publish -p ${{ secrets.VSCE_TOKEN }}
